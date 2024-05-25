@@ -31,6 +31,62 @@ app.get('/getNewMsg', (req, res) => { // 当请求为get请求，url路径为 / 
   }
   res.send(data)
 })
+app.get('/getOptions', (req, res) => { // 当请求为get请求，url路径为 / 的时候，返回如下数据
+  res.header('Access-Control-Allow-Origin', '*');
+  // 带状态码的结构
+  let data = [
+    {
+      va: 'bubbles',
+      la: '奶黄泡泡'
+    }, {
+      va: 'clouds',
+      la: '七彩云层'
+    }
+  ]
+  res.send(data)
+})
+app.get('/getOptionsCity', (req, res) => { // 当请求为get请求，url路径为 / 的时候，返回如下数据
+  res.header('Access-Control-Allow-Origin', '*');
+  // 带状态码的结构
+  let data = [
+    {
+      va: 'beijing',
+      la: '北京',
+    }, {
+      va: 'shanghai',
+      la: '上海',
+    }
+  ]
+  res.send(data)
+})
+app.get('/getOptionsAndDeepOptions', (req, res) => { // 当请求为get请求，url路径为 / 的时候，返回如下数据
+  res.header('Access-Control-Allow-Origin', '*');
+  let cityVal = req.query.cityVal
+  console.log('cityVal', cityVal);
+  let Dict = {
+    'beijing': [
+      {
+        va: 'chang',
+        la: '八达岭',
+      },
+      {
+        va: 'tiananmen',
+        la: '天安门',
+      }
+    ],
+    "shanghai": [
+      {
+        va: 'minxing',
+        la: '闵行区',
+      },
+      {
+        va: 'pufong',
+        la: '浦东新区',
+      }
+    ]
+  }
+  res.send(Dict[cityVal])
+})
 
 // 在9999端口上启动后端服务
 app.listen(9999, (req, res) => {
